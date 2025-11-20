@@ -1,0 +1,19 @@
+.add-task-container {
+  padding: 16px;
+}
+
+.add-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-task-form input,
+.add-task-form textarea,
+.add-task-form select {
+  width: 100%;
+  padding: 8px;
+  font-size: var(--normal-text);
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
