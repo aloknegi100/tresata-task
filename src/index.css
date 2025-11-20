@@ -1,0 +1,46 @@
+:root{
+  --primary-color: #034EA2;
+  --secondory-color:#F3F6F9;
+  --heading-text: 16px;
+  --normal-text: 14px;
+  --sub-text: 12px;
+
+  --primary-text-color:#231F20;
+  --secondory-text-color:#767676;
+  --border-default-color:#DDDDDD;
+
+  --weight-bold: 700;
+  --weight-medium: 500;
+  --weight-regular: 400;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+body{
+    height: 100vh;
+    width: 100vw;
+}
+#root{
+    width: 100%;
+    height: 100%;
+    background-color: lightgray;
+    color:var(--primary-text-color)
+}
+.app-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 414px;
+  height: 100%;
+  background-color: white;
+}
+
+.main-content {
+  padding: 8px;
+}
+
