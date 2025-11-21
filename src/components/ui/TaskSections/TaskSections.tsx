@@ -3,6 +3,8 @@ import type { Task, TaskStatus } from "../../../types/task";
 import TaskCategoryBar from "../TaskCategoryBar/TaskCategoryBar";
 import TaskCard from "../TaskCard/TaskCard";
 import { useNavigate } from "react-router-dom";
+import { SubText } from "../../Typography";
+import "./TaskSections.css";
 
 interface Props {
   tasks: Record<TaskStatus, Task[]>;
@@ -18,7 +20,7 @@ const TaskSections: FC<Props> = ({ tasks, open, setOpen, onDelete }) => {
   const handleToggle = (status: TaskStatus) => {
     setOpen({
       ...open,
-      [status]: !open[status]
+      [status]: !open[status],
     });
   };
 
@@ -26,22 +28,34 @@ const TaskSections: FC<Props> = ({ tasks, open, setOpen, onDelete }) => {
 
   const formatTitle = (status: TaskStatus): string => {
     const formatMap: Record<TaskStatus, string> = {
-      "pending": "Pending",
-      "in-progress": "In Progress", 
-      "completed": "Completed"
+      pending: "Pending",
+      "in-progress": "In Progress",
+      completed: "Completed",
     };
     return formatMap[status];
   };
 
-  if (!tasks || typeof tasks !== 'object') {
+  if (!tasks || typeof tasks !== "object") {
     return <div>Loading tasks...</div>;
   }
 
   const safeTasks = {
     pending: tasks.pending || [],
     "in-progress": tasks["in-progress"] || [],
-    completed: tasks.completed || []
+    completed: tasks.completed || [],
   };
+
+  const allEmpty = statuses.every((status) => safeTasks[status]?.length === 0);
+
+  if (allEmpty) {
+    return (
+      <div className="empty-state">
+        <SubText color="var(--text-muted-color)">
+          No tasks yet. Create your first task to get started!
+        </SubText>
+      </div>
+    );
+  }
 
   return (
     <div style={{ marginTop: 8 }}>
@@ -53,14 +67,15 @@ const TaskSections: FC<Props> = ({ tasks, open, setOpen, onDelete }) => {
           isOpen={open[status]}
           onToggle={() => handleToggle(status)}
         >
-          {open[status] && safeTasks[status]?.map((task) => (
-            <TaskCard 
-              key={task.id} 
-              task={task} 
-              onEdit={onEdit} 
-              onDelete={onDelete} // Pass it down
-            />
-          ))}
+          {open[status] &&
+            safeTasks[status]?.map((task) => (
+              <TaskCard
+                key={task.id}
+                task={task}
+                onEdit={onEdit}
+                onDelete={onDelete}
+              />
+            ))}
         </TaskCategoryBar>
       ))}
     </div>

@@ -1,0 +1,18 @@
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-muted-color);
+}
+
+.empty-category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: var(--text-muted-color);
+  font-style: italic;
+}
+

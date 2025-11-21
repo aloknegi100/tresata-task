@@ -5,9 +5,9 @@ import { Pencil, Trash2 } from "lucide-react";
 import "./TaskCard.css";
 
 const statusColors: Record<Task["status"], string> = {
-  pending: "#999999",
-  "in-progress": "#0aab00",
-  completed: "#ff4d4f",
+  pending: "#D0D0D0",
+  "in-progress": "#FFB03C",
+  completed: "#368A04",
 };
 
 interface Props {

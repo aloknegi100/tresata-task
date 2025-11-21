@@ -9,7 +9,7 @@ interface HeadingProps {
 
 const Heading: FC<HeadingProps> = ({
   children,
-  weight = "bold",
+  weight = "medium",
   color = "var(--primary-color)",
   className = "",
 }) => {
