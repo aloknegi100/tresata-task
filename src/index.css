@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 :root{
   --primary-color: #034EA2;
   --secondory-color:#F3F6F9;
+  --danger-color:#E32A34;
   --heading-text: 16px;
   --normal-text: 14px;
   --sub-text: 12px;
@@ -14,7 +16,9 @@
   --weight-bold: 700;
   --weight-medium: 500;
   --weight-regular: 400;
+  --font-family: 'Jost', sans-serif;
 }
+
 
 * {
   margin: 0;
@@ -26,6 +30,7 @@ body{
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    font-family: var(--font-family);
 }
 #root{
     width: 100%;

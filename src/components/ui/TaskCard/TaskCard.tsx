@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import type { Task } from "../../../types/task";
 import { SmallText, SubText, Text } from "../../Typography";
-import { Edit3, Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 import "./TaskCard.css";
 
 const statusColors: Record<Task["status"], string> = {
@@ -54,14 +54,14 @@ const TaskCard: FC<Props> = ({ task, onEdit, onDelete }) => {
             onClick={handleEdit}
             aria-label="Edit task"
           >
-            <Edit3 size={16} />
+            <Pencil size={16} color="var(--primary-color)" />
           </button>
           <button 
             className="action-btn delete-btn" 
             onClick={handleDelete}
             aria-label="Delete task"
           >
-            <Trash2 size={16} />
+            <Trash2 size={16} color="var(--danger-color)"/>
           </button>
         </div>
       </div>
