@@ -40,16 +40,19 @@ body{
 }
 .app-container {
   position: absolute;
+  display: flex;
+  flex-direction: column;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 414px;
-  height: 100%;
   background-color: white;
-  max-height: 896px;
+  height: 90%;
 }
 
 .main-content {
   padding: 16px;
+  overflow: auto;
+
 }
 
