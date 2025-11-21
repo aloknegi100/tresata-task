@@ -11,6 +11,7 @@
   cursor: pointer;
   height: 36px;
   padding: 14px 10px;
+  user-select: none;
 }
 
 

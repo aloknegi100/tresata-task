@@ -8,15 +8,16 @@ const AddTask = () => {
 
   const handleAdd = (task: Parameters<typeof addTask>[0]) => {
     addTask(task);
-    navigate("/"); 
+    navigate("/");
   };
 
   const handleCancel = () => {
-    navigate("/"); 
+    navigate("/");
   };
 
-
-  return <TaskForm onSubmit={handleAdd} submitText="Add Task" onCancel={handleCancel}  />;
+  return (
+    <TaskForm onSubmit={handleAdd} submitText="Add" onCancel={handleCancel} />
+  );
 };
 
 export default AddTask;

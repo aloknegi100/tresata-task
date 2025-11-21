@@ -6,8 +6,8 @@ import "./TaskCard.css";
 
 const statusColors: Record<Task["status"], string> = {
   pending: "#999999",
-  "in-progress": "#0aab00", 
-  completed: "#ff4d4f", 
+  "in-progress": "#0aab00",
+  completed: "#ff4d4f",
 };
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
   onDelete?: (taskId: string) => void;
 }
 const formatTaskDate = (isoString?: string) => {
-  if(!isoString)return
+  if (!isoString) return;
   const d = new Date(isoString);
 
   const weekday = d.toLocaleDateString("en-US", { weekday: "short" });
@@ -26,9 +26,6 @@ const formatTaskDate = (isoString?: string) => {
 
   return `${weekday} ${day}, ${month} ${year}`;
 };
-
-
-
 
 const TaskCard: FC<Props> = ({ task, onEdit, onDelete }) => {
   const firstChar = task.title.charAt(0).toUpperCase();
@@ -45,37 +42,39 @@ const TaskCard: FC<Props> = ({ task, onEdit, onDelete }) => {
 
   return (
     <div className="task-card">
-      <div className="task-card-header">
-        <div className="task-left">
-          <div className="task-circle">{firstChar}</div>
-          <Text>{task.title}</Text>
+      <div className="task-circle">{firstChar}</div>
+      <div className="task-container">
+        <div className="task-card-header">
+          <div className="task-left">
+            <Text weight="medium">{task.title}</Text>
+          </div>
+          <div className="task-status">
+            <span
+              className="status-bullet"
+              style={{ backgroundColor: statusColors[task.status] }}
+            ></span>
+            <SubText>{task.status.replace("-", " ")}</SubText>
+          </div>
         </div>
-        <div className="task-status">
-          <span
-            className="status-bullet"
-            style={{ backgroundColor: statusColors[task.status] }}
-          ></span>
-          <SubText>{task.status.replace("-", " ")}</SubText>
-        </div>
-      </div>
-      <SubText className="task-desc">{task.description}</SubText>
-      <div className="task-card-footer">
-        <SmallText>{formatTaskDate(task.date)}</SmallText>
-        <div className="task-actions">
-          <button 
-            className="action-btn edit-btn" 
-            onClick={handleEdit}
-            aria-label="Edit task"
-          >
-            <Pencil size={16} color="var(--primary-color)" />
-          </button>
-          <button 
-            className="action-btn delete-btn" 
-            onClick={handleDelete}
-            aria-label="Delete task"
-          >
-            <Trash2 size={16} color="var(--danger-color)"/>
-          </button>
+        <SubText className="task-desc">{task.description}</SubText>
+        <div className="task-card-footer">
+          <SmallText>{formatTaskDate(task.date)}</SmallText>
+          <div className="task-actions">
+            <button
+              className="action-btn edit-btn"
+              onClick={handleEdit}
+              aria-label="Edit task"
+            >
+              <Pencil size={16} color="var(--primary-color)" />
+            </button>
+            <button
+              className="action-btn delete-btn"
+              onClick={handleDelete}
+              aria-label="Delete task"
+            >
+              <Trash2 size={16} color="var(--danger-color)" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

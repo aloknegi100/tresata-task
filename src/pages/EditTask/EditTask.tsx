@@ -13,14 +13,22 @@ const EditTask = () => {
 
   const handleUpdate = (updated: Parameters<typeof updateTask>[1]) => {
     updateTask(id!, updated);
-    navigate("/"); 
+    navigate("/");
   };
 
   const handleCancel = () => {
-    navigate("/"); 
+    navigate("/");
   };
 
-  return <TaskForm initialTask={taskToEdit} onSubmit={handleUpdate} onCancel={handleCancel} submitText="Update Task" type="edit" />;
+  return (
+    <TaskForm
+      initialTask={taskToEdit}
+      onSubmit={handleUpdate}
+      onCancel={handleCancel}
+      submitText="Update"
+      type="edit"
+    />
+  );
 };
 
 export default EditTask;
