@@ -7,3 +7,12 @@
     padding: 8px 19px;
     font-size: var(--heading-text);
 }
+
+.back-btn{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    margin-right: 10px;
+    cursor: pointer;
+}
