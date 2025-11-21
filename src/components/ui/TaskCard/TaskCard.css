@@ -3,6 +3,17 @@
   width: 100%;
   padding: 14px;
   border-bottom: 1px solid var(--border-default-color);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.task-card:hover {
+  background: #fafafa;
+}
+
+.task-card:hover .task-actions {
+  opacity: 1;
+  visibility: visible;
 }
 
 .task-card-header {
@@ -54,4 +65,49 @@
   font-size: var(--sub-text);
   color: #666;
   margin: 0;
+  margin-bottom: 8px;
+}
+
+.task-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.edit-btn {
+  color: #666;
+}
+
+.edit-btn:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.delete-btn {
+  color: #999;
+}
+
+.delete-btn:hover {
+  background: #fff2f0;
+  color: #ff4d4f;
 }

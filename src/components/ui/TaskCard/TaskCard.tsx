@@ -1,16 +1,33 @@
 import type { FC } from "react";
 import type { Task } from "../../../types/task";
 import { SmallText, SubText, Text } from "../../Typography";
+import { Edit3, Trash2 } from "lucide-react";
 import "./TaskCard.css";
 
 const statusColors: Record<Task["status"], string> = {
-  pending: "#999999", // gray
-  "in-progress": "#0aab00", // green
-  completed: "#ff4d4f", // red
+  pending: "#999999",
+  "in-progress": "#0aab00", 
+  completed: "#ff4d4f", 
 };
 
-const TaskCard: FC<{ task: Task }> = ({ task }) => {
+interface Props {
+  task: Task;
+  onEdit?: (task: Task) => void;
+  onDelete?: (taskId: string) => void;
+}
+
+const TaskCard: FC<Props> = ({ task, onEdit, onDelete }) => {
   const firstChar = task.title.charAt(0).toUpperCase();
+
+  const handleEdit = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onEdit?.(task);
+  };
+
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onDelete?.(task.id);
+  };
 
   return (
     <div className="task-card">
@@ -28,7 +45,26 @@ const TaskCard: FC<{ task: Task }> = ({ task }) => {
         </div>
       </div>
       <SubText className="task-desc">{task.description}</SubText>
-      <SmallText>{task.date}</SmallText>
+      
+      <div className="task-card-footer">
+        <SmallText>{task.date}</SmallText>
+        <div className="task-actions">
+          <button 
+            className="action-btn edit-btn" 
+            onClick={handleEdit}
+            aria-label="Edit task"
+          >
+            <Edit3 size={16} />
+          </button>
+          <button 
+            className="action-btn delete-btn" 
+            onClick={handleDelete}
+            aria-label="Delete task"
+          >
+            <Trash2 size={16} />
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

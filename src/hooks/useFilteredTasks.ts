@@ -16,28 +16,38 @@ export const useFilteredTasks = ({ tasks, defaultOpen }: UseFilteredTasksProps) 
     }
   );
 
-  // Filter tasks by search term
   const filteredTasks = useMemo(() => {
-    if (!searchTerm) return tasks;
+    if (!searchTerm.trim()) return tasks;
+    
+    const term = searchTerm.toLowerCase().trim();
     return tasks.filter(
       (task) =>
-        task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.description.toLowerCase().includes(searchTerm.toLowerCase())
+        task.title.toLowerCase().includes(term) ||
+        task.description.toLowerCase().includes(term)
     );
   }, [tasks, searchTerm]);
 
-  // Group tasks by status
   const tasksByStatus: Record<TaskStatus, Task[]> = useMemo(() => {
     const result: Record<TaskStatus, Task[]> = {
       pending: [],
       "in-progress": [],
       completed: [],
     };
+    
     filteredTasks.forEach((task) => {
-      result[task.status].push(task);
+      if (result[task.status]) {
+        result[task.status].push(task);
+      }
     });
+    
     return result;
   }, [filteredTasks]);
 
-  return { searchTerm, setSearchTerm, open, setOpen, tasksByStatus };
+  return { 
+    searchTerm, 
+    setSearchTerm, 
+    open, 
+    setOpen, 
+    tasksByStatus 
+  };
 };

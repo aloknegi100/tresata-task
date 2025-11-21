@@ -2,28 +2,58 @@ import type { FC } from "react";
 import type { Task, TaskStatus } from "../../../types/task";
 import TaskCategoryBar from "../TaskCategoryBar/TaskCategoryBar";
 import TaskCard from "../TaskCard/TaskCard";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
-  tasks: Record<TaskStatus, Task[]>; // <-- grouped tasks
+  tasks: Record<TaskStatus, Task[]>;
   open: Record<TaskStatus, boolean>;
   setOpen: (open: Record<TaskStatus, boolean>) => void;
 }
 
 const TaskSections: FC<Props> = ({ tasks, open, setOpen }) => {
+  const navigate=useNavigate()
   const statuses: TaskStatus[] = ["pending", "in-progress", "completed"];
+
+  const handleToggle = (status: TaskStatus) => {
+    setOpen({
+      ...open,
+      [status]: !open[status]
+    });
+  };
+
+  const onEdit=(task: Task)=>navigate(`/edit-task/${task.id}`)
+
+  const formatTitle = (status: TaskStatus): string => {
+    const formatMap: Record<TaskStatus, string> = {
+      "pending": "Pending",
+      "in-progress": "In Progress", 
+      "completed": "Completed"
+    };
+    return formatMap[status];
+  };
+
+  if (!tasks || typeof tasks !== 'object') {
+    return <div>Loading tasks...</div>;
+  }
+
+  const safeTasks = {
+    pending: tasks.pending || [],
+    "in-progress": tasks["in-progress"] || [],
+    completed: tasks.completed || []
+  };
 
   return (
     <div style={{ marginTop: 8 }}>
       {statuses.map((status) => (
         <TaskCategoryBar
           key={status}
-          title={status.replace("-", " ")}
-          count={tasks[status].length}
+          title={formatTitle(status)}
+          count={safeTasks[status]?.length || 0}
           isOpen={open[status]}
-          onToggle={() => setOpen({ ...open, [status]: !open[status] })}
+          onToggle={() => handleToggle(status)}
         >
-          {tasks[status].map((task) => (
-            <TaskCard key={task.id} task={task} />
+          {open[status] && safeTasks[status]?.map((task) => (
+            <TaskCard key={task.id} task={task} onEdit={onEdit} />
           ))}
         </TaskCategoryBar>
       ))}
