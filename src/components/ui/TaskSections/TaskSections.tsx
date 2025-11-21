@@ -10,10 +10,17 @@ interface Props {
   tasks: Record<TaskStatus, Task[]>;
   open: Record<TaskStatus, boolean>;
   setOpen: (open: Record<TaskStatus, boolean>) => void;
-  onDelete?: (taskId: string) => void; // Add this
+  onDelete?: (taskId: string) => void;
+  searchTerm?: string;
 }
 
-const TaskSections: FC<Props> = ({ tasks, open, setOpen, onDelete }) => {
+const TaskSections: FC<Props> = ({
+  tasks,
+  open,
+  setOpen,
+  onDelete,
+  searchTerm,
+}) => {
   const navigate = useNavigate();
   const statuses: TaskStatus[] = ["pending", "in-progress", "completed"];
 
@@ -51,7 +58,9 @@ const TaskSections: FC<Props> = ({ tasks, open, setOpen, onDelete }) => {
     return (
       <div className="empty-state">
         <SubText color="var(--text-muted-color)">
-          No tasks yet. Create your first task to get started!
+          {searchTerm
+            ? `There are no tasks related to ${searchTerm}.`
+            : "No tasks yet. Create your first task to get started!"}
         </SubText>
       </div>
     );

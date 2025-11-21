@@ -30,14 +30,15 @@ const Home = () => {
         />
       </div>
 
-      <TaskSections 
-        tasks={displayTasks} 
-        open={open} 
-        setOpen={setOpen} 
+      <TaskSections
+        tasks={displayTasks}
+        open={open}
+        setOpen={setOpen}
         onDelete={handleDeleteTask}
+        searchTerm={searchTerm}
       />
 
-      <button 
+      <button
         className="floating-add-btn"
         onClick={() => navigate("/add-task")}
         aria-label="Add new task"
