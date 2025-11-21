@@ -8,10 +8,11 @@ interface Props {
   tasks: Record<TaskStatus, Task[]>;
   open: Record<TaskStatus, boolean>;
   setOpen: (open: Record<TaskStatus, boolean>) => void;
+  onDelete?: (taskId: string) => void; // Add this
 }
 
-const TaskSections: FC<Props> = ({ tasks, open, setOpen }) => {
-  const navigate=useNavigate()
+const TaskSections: FC<Props> = ({ tasks, open, setOpen, onDelete }) => {
+  const navigate = useNavigate();
   const statuses: TaskStatus[] = ["pending", "in-progress", "completed"];
 
   const handleToggle = (status: TaskStatus) => {
@@ -21,7 +22,7 @@ const TaskSections: FC<Props> = ({ tasks, open, setOpen }) => {
     });
   };
 
-  const onEdit=(task: Task)=>navigate(`/edit-task/${task.id}`)
+  const onEdit = (task: Task) => navigate(`/edit-task/${task.id}`);
 
   const formatTitle = (status: TaskStatus): string => {
     const formatMap: Record<TaskStatus, string> = {
@@ -53,7 +54,12 @@ const TaskSections: FC<Props> = ({ tasks, open, setOpen }) => {
           onToggle={() => handleToggle(status)}
         >
           {open[status] && safeTasks[status]?.map((task) => (
-            <TaskCard key={task.id} task={task} onEdit={onEdit} />
+            <TaskCard 
+              key={task.id} 
+              task={task} 
+              onEdit={onEdit} 
+              onDelete={onDelete} // Pass it down
+            />
           ))}
         </TaskCategoryBar>
       ))}

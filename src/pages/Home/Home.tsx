@@ -6,13 +6,19 @@ import { useFilteredTasks } from "../../hooks/useFilteredTasks";
 import "./Home.css";
 
 const Home = () => {
-  const { tasks, groupedTasks } = useTasks();
+  const { tasks, groupedTasks, deleteTask } = useTasks();
   const navigate = useNavigate();
 
   const { searchTerm, setSearchTerm, open, setOpen, tasksByStatus } =
     useFilteredTasks({ tasks });
 
   const displayTasks = searchTerm ? tasksByStatus : groupedTasks;
+
+  const handleDeleteTask = (taskId: string) => {
+    if (window.confirm("Are you sure you want to delete this task?")) {
+      deleteTask(taskId);
+    }
+  };
 
   return (
     <div className="home-container">
@@ -28,6 +34,7 @@ const Home = () => {
         tasks={displayTasks} 
         open={open} 
         setOpen={setOpen} 
+        onDelete={handleDeleteTask}
       />
 
       <button 
