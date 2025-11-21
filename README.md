@@ -1,75 +1,67 @@
-# React + TypeScript + Vite
+Task Management Application
+A modern, responsive Task Management application built with React, TypeScript, and Vite. Organize your tasks efficiently with a clean, intuitive interface.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Features
+Core Functionality
+✅ Create Tasks - Add tasks with title, description, status, priority, and due dates
 
-Currently, two official plugins are available:
+✅ Edit Tasks - Modify existing tasks with a comprehensive form
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✅ Delete Tasks - Remove tasks with confirmation
 
-## React Compiler
+✅ Duplicate Tasks - Quickly copy existing tasks
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+✅ Task Status - Track progress with Pending, In Progress, and Completed states
 
-Note: This will impact Vite dev & build performances.
+✅ Priority Levels - Organize tasks with Low, Medium, and High priorities
 
-## Expanding the ESLint configuration
+Advanced Features
+🔍 Smart Search - Find tasks by title or description with debounced search
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🎯 Status Filtering - Filter tasks by All, Pending, In Progress, or Completed
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+💾 Local Storage - Automatic data persistence between sessions
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+📱 Responsive Design - Works seamlessly on desktop, tablet, and mobile
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🎨 Modern UI - Clean, accessible interface with smooth animations
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+📊 Live Statistics - Real-time task statistics and progress tracking
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🛠️ Tech Stack
+Frontend: React 18 + TypeScript
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Build Tool: Vite
+
+Styling: CSS3 with CSS Variables
+
+Icons: Lucide React
+
+Routing: React Router DOM
+
+State Management: React Hooks + Local Storage
+
+ID Generation: UUID
+
+📦 Installation
+Prerequisites
+Node.js 20+
+
+npm or yarn
+
+Setup Instructions
+1)Clone the repository
+git clone https://github.com/aloknegi100/tresata-task.git
+cd tresata-task
+
+2)Install dependencies
+npm install
+
+3)Start development server
+npm run dev
+
+4)Open your browser
+http://localhost:5173/
+
+
+
