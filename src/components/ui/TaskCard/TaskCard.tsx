@@ -15,6 +15,20 @@ interface Props {
   onEdit?: (task: Task) => void;
   onDelete?: (taskId: string) => void;
 }
+const formatTaskDate = (isoString?: string) => {
+  if(!isoString)return
+  const d = new Date(isoString);
+
+  const weekday = d.toLocaleDateString("en-US", { weekday: "short" });
+  const day = d.toLocaleDateString("en-US", { day: "2-digit" });
+  const month = d.toLocaleDateString("en-US", { month: "long" });
+  const year = d.getFullYear();
+
+  return `${weekday} ${day}, ${month} ${year}`;
+};
+
+
+
 
 const TaskCard: FC<Props> = ({ task, onEdit, onDelete }) => {
   const firstChar = task.title.charAt(0).toUpperCase();
@@ -45,9 +59,8 @@ const TaskCard: FC<Props> = ({ task, onEdit, onDelete }) => {
         </div>
       </div>
       <SubText className="task-desc">{task.description}</SubText>
-      
       <div className="task-card-footer">
-        <SmallText>{task.date}</SmallText>
+        <SmallText>{formatTaskDate(task.date)}</SmallText>
         <div className="task-actions">
           <button 
             className="action-btn edit-btn" 

@@ -41,7 +41,7 @@ export const useTasks = () => {
     const newTask: Task = {
       ...task,
       id: uuidv4(),
-      date: new Date().toISOString().split('T')[0]
+      date: new Date().toISOString()
     };
     setTasks((prev) => [...prev, newTask]);
     return newTask;
